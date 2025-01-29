@@ -1,0 +1,42 @@
+{% extends 'cruduser/base.html' %}
+
+{% block title %}Add Student{% endblock title %}
+
+{% block main_content %}
+<section class="container py-5">
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center mb-4">
+        <div class="col-md-8">
+            <h3 class="display-5 fw-bold text-dark">CRUD PROJECT IN PYTHON DJANGO</h3>
+            <p class="lead text-muted">Add a new student by filling out the details below:</p>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Card for Form -->
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body">
+                    <!-- Title inside Card -->
+                    <h5 class="card-title text-center text-dark mb-4">Add Student Details</h5>
+
+                    <!-- Form -->
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <!-- Form Fields (Retaining {{ form.as_p }} for your original form code) -->
+                            {{ form.as_p }}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <input type="submit" value="Add Student" class="btn btn-success btn-lg w-100">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

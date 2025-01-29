@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls Index</title>
+    {% load static %}
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            font-size: 2.5em;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .question-count {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #007bff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f0f4f7;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        li:hover {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .no-questions {
+            text-align: center;
+            font-size: 1.2em;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to the Polls App</h1>
+        <p>Explore the list of available polls and cast your vote!</p>
+
+        <div class="question-count">
+            {% if latest_question_list %}
+                <p>There are <strong>{{ latest_question_list|length }}</strong> polls available.</p>
+            {% else %}
+                <p>No polls available at the moment.</p>
+            {% endif %}
+        </div>
+
+        <ul>
+            {% for question in latest_question_list %}
+                <li>
+                    <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                </li>
+            {% empty %}
+                <li class="no-questions">No questions available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
